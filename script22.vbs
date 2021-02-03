@@ -3,21 +3,27 @@ On Error Resume Next
 'Setting up the script to work with the file system.
 Set WshShell = WScript.CreateObject("WScript.Shell")
 Set FileSysObj = CreateObject("Scripting.FileSystemObject")
-Set objSysInfo = CreateObject("ADSystemInfo")
+'Set objSysInfo = CreateObject("ADSystemInfo")
 Set UserObj = GetObject("LDAP://" & objSysInfo.UserName)
 strAppData = WshShell.ExpandEnvironmentStrings("%APPDATA%")
 SigFolder = StrAppData & "\Microsoft\Signatures\"
 SigFile = SigFolder & UserObj.sAMAccountName & "2" & ".htm"
 
 'Setting placeholders for the signature. They will be automatically replaced with data from Active Directory.
-strUserName = UserObj.sAMAccountName
-strFullName = UserObj.displayname
-strTitle = UserObj.title
-strMobile = UserObj.mobile
-strEmail = UserObj.mail
-strCompany = UserObj.company
-strOfficePhone = UserObj.telephoneNumber
-
+'strUserName = UserObj.sAMAccountName
+'strFullName = UserObj.displayname
+'strTitle = UserObj.title
+'strMobile = UserObj.mobile
+'strEmail = UserObj.mail
+'strCompany = UserObj.company
+'strOfficePhone = UserObj.telephoneNumber
+strUserName = "ANTON"
+strFullName = "PALIKHOV"
+strTitle = "UserObj.title"
+strMobile = "UserObj.mobile"
+strEmail = "UserObj.mail"
+strCompany = "UserObj.company"
+strOfficePhone = "UserObj.telephoneNumber"
 'Setting global placeholders for the signature. Those values will be identical for all users - make sure to replace them with the right values!
 strCompanyLogo = "https://codetwocdn.azureedge.net/images/mail-signatures/generator-dm/hexagonal-logo/logo.png"
 strBanner = "https://codetwocdn.azureedge.net/images/mail-signatures/generator-dm/hexagonal-logo/banner.png"
@@ -55,8 +61,7 @@ If strTwitter <> "" Then
 CreateSigFile.WriteLine "<tr> <td width='25' height='30' valign='top' style='vertical-align: top;'><a href='" & strTwitter & "' target='_blank' rel='noopener'><img border='0' width='26' height='25' alt='twitter icon' style='border:0; height:25px; width:26px;' src='https://codetwocdn.azureedge.net/images/mail-signatures/generator-dm/hexagonal-logo/tt.png'></a></td></tr>"
 End If
 If strYouTube <> "" Then
-CreateSigFile.WriteLine "<tr> <td width='25' height='30' valign='top' style='vertical-align: top;'><a href='"& strYouTube &"' target='_blank' rel='noopene
-r'><img border='0' width='26' height='25' alt='youtube icon' style='border:0; height:25px; width:26px' src='https://codetwocdn.azureedge.net/images/mail-signatures/generator-dm/hexagonal-logo/yt.png'></a></td> </tr>"
+CreateSigFile.WriteLine "<tr> <td width='25' height='30' valign='top' style='vertical-align: top;'><a href='"& strYouTube &"' target='_blank' rel='noopener'><img border='0' width='26' height='25' alt='youtube icon' style='border:0; height:25px; width:26px' src='https://codetwocdn.azureedge.net/images/mail-signatures/generator-dm/hexagonal-logo/yt.png'></a></td> </tr>"
 End If
 CreateSigFile.WriteLine "</tbody></table>"
 CreateSigFile.WriteLine "</td>"
